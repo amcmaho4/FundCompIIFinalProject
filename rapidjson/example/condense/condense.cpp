@@ -8,8 +8,13 @@
 #include "rapidjson/filereadstream.h"
 #include "rapidjson/filewritestream.h"
 #include "rapidjson/error/en.h"
-
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>     // std::cout
+#include <fstream>
 using namespace rapidjson;
+using namespace std;
+
 
 int main(int, char*[]) {
     // Prepare JSON reader and input stream.
@@ -27,6 +32,6 @@ int main(int, char*[]) {
         fprintf(stderr, "\nError(%u): %s\n", (unsigned)reader.GetErrorOffset(), GetParseError_En(reader.GetParseErrorCode()));
         return 1;
     }
-
+	cout<< "sucess"<<endl;
     return 0;
 }
