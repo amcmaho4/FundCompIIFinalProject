@@ -1,6 +1,8 @@
 #include <cstdio>
 #include <cstdlib>
 
+
+// use popen instead to read the file 
 int main ()
 {
 	system("curl https://query.yahooapis.com/v1/public/yql \
