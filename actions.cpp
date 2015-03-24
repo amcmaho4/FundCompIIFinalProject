@@ -1,10 +1,3 @@
-/*=============================================================================
-    Copyright (c) 2001-2010 Hartmut Kaiser
-    Copyright (c) 2001-2010 Joel de Guzman
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-=============================================================================*/
-
 #include <boost/config/warning_disable.hpp>
 #include <boost/spirit/include/karma.hpp>
 #include <boost/lambda/lambda.hpp>
@@ -13,11 +6,15 @@
 #include <iostream>
 #include <sstream>
 
-// Presented are various ways to attach semantic actions
+//example found online about semantic actions
+// SEMANtic Actions: actions that can be associated with any nested object or group of nested objects in the Parsed object
+// different ways to attach semantic actions to an object:
 //  * Using plain function pointer
 //  * Using simple function object
 //  * Using boost.bind
 //  * Using boost.lambda
+
+//** takes awhile to compile
 
 using boost::spirit::unused_type;
 
@@ -52,7 +49,6 @@ namespace client
 }
 //]
 
-///////////////////////////////////////////////////////////////////////////////
 int main()
 {
     using boost::spirit::karma::int_;

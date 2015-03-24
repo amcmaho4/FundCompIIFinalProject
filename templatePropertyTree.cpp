@@ -1,17 +1,6 @@
-// ----------------------------------------------------------------------------
-// Copyright (C) 2002-2006 Marcin Kalicinski
-//
-// Distributed under the Boost Software License, Version 1.0. 
-// (See accompanying file LICENSE_1_0.txt or copy at 
-// http://www.boost.org/LICENSE_1_0.txt)
-//
-// For more information, see www.boost.org
-// ----------------------------------------------------------------------------
-
 // This example shows what need to be done to customize data_type of ptree.
-//
-// It creates my_ptree type, which is a basic_ptree having boost::any as its data
-// container (instead of std::string that standard ptree has).
+// templating and ptree
+// makes a my_ptree type, which has boost::any as its data instead of string (the usual)
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/any.hpp>

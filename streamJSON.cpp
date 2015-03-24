@@ -1,6 +1,13 @@
 
 #include <boost/property_tree/ptree.hpp> 
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/foreach.hpp>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+//NOT WORKING
+//COULD BE HELPFUL, uses URLs
+
 int ParseJson()
 {
   std::string str = "{\"code\":0,\"images\":[{\"url\":\"fmn057/20111221/1130/head_kJoO_05d9000251de125c.jpg\"},{\"url\":\"fmn057/20111221/1130/original_kJoO_05d9000251de125c.jpg\"}]}";

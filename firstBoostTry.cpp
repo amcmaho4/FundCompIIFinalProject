@@ -16,7 +16,7 @@ int main()
     try
     {
         std::stringstream ss;
-        ss <<" { \"hello\" : \"world\", \"t\" : true , \"f\" : false, \"n\": null, \"i\":123, \"pi\": 3.1416, \"a\":[1, 2, 3, 4] }"; // "{ \"root\": { \"values\": [1, 2, 3, 4, 5 ] } }";
+        ss <<" { \"hello\" : \"world\", \"t\" : true , \"f\" : false, \"n\": null, \"i\":123, \"pi\": 3.1416, \"a\":[1, 2, 3, 4] }";
  
         boost::property_tree::ptree pt;
         boost::property_tree::read_json(ss, pt);
@@ -33,6 +33,7 @@ int main()
     cerr << "\""<< pt.data()<< "\"";
   } else {
     //if (level) cerr << endl;
+	  
     cerr << " " << "{" << endl;
 	  for (boost::property_tree::ptree::iterator pos = pt.begin(); pos != pt.end();) {
       cerr << "    " << "\"" << pos->first << "\": ";
@@ -44,7 +45,7 @@ int main()
       cerr << endl;
     } 
     cerr << " " << " }";
-  }
+ 	 }
 
 	}
     catch (std::exception const& e)
@@ -52,7 +53,4 @@ int main()
         std::cerr << e.what() << std::endl;
     }
     return EXIT_FAILURE;
-
-
-
 }

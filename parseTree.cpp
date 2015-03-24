@@ -11,7 +11,6 @@
 //#define reverse_foreach BOOST_REVERSE_FOREACH
 #include <stdio.h>
 #include <boost/foreach.hpp>
-
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <string>
@@ -67,13 +66,13 @@ void parse_tree(const ptree& pt, std::string key)
 
 void printWindData(const ptree& node)
 {
-	BOOST_FOREACH(const ptree::value_type& child, node.get_child("speed")) {
-		std::cout<< "windy data"<<endl;
-	}
+//	BOOST_FOREACH(const ptree::value_type& child, node.get_child("speed")) {
+//		std::cout<< "windy data"<<endl;
+//	}
 }
 
 int main(int, char*[]) {
-	string tagfile = "file2";
+	string tagfile = "file2.json";
 	ptree pt;
 	bool success = true;
 	//try {
