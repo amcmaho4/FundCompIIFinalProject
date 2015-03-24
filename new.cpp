@@ -13,8 +13,6 @@ using namespace rapidjson;
 using namespace std;
 
 int main(int, char*[]) {
-    ////////////////////////////////////////////////////////////////////////////
-    // 1. Parse a JSON text string to a document.
 
 
 FILE* pFile = fopen("file2", "r");
@@ -57,20 +55,23 @@ if ( document1.Parse<0>( test.c_str() ).HasParseError() ) {
 
 
 // iterate through and look at the types
-static const char* kTypeNames[] =
-    { "Null", "False", "True", "Object", "Array", "String", "Number" };
+
+
+static const char* kTypeNames[] = { "Null", "False", "True", "Object", "Array", "String", "Number" };
+
 for (Value::ConstMemberIterator itr = dlast.MemberBegin();itr != dlast.MemberEnd(); ++itr)
 {
-    printf("Type of member %s is %s\n",
-        itr->name.GetString(), kTypeNames[itr->value.GetType()]);
+    printf("Type of member %s is %s\n", itr->name.GetString(), kTypeNames[itr->value.GetType()]);
+
 
 if(strcmp(kTypeNames[itr->value.GetType()], "Object")==0){
+//	findObjects(dlast, itr->name.GetString() , kTypeNames[itr->value.GetType()]);
 	rapidjson::Document document1;
 	rapidjson::StringBuffer sb;
         rapidjson::Writer<rapidjson::StringBuffer> writer( sb );
         dlast[itr->name.GetString()].Accept( writer );
         std::cout << sb.GetString() << std::endl;
-	if ( document1.Parse<0>( sb.GetString() ).HasParseError() ) {
+	if ( document1.Parse<0>(sb.GetString() ).HasParseError() ) {
     		std::cout << "Error parsing" << std::endl;
 	} else {
 	for (Value::ConstMemberIterator itr = document1.MemberBegin();itr != document1.MemberEnd(); ++itr)
@@ -78,21 +79,30 @@ if(strcmp(kTypeNames[itr->value.GetType()], "Object")==0){
    	 printf("Type of member %s is %s\n",itr->name.GetString(), kTypeNames[itr->value.GetType()]);
 	}		
 	}
-	//for (Value::ConstMemberIterator itr2 = itr.MemberBegin(); itr2 != itr.MemberEnd(); ++itr2)
-//	{
-  //  		printf("Type of member %s is %s\n",
-    ///    	itr2->name.GetString(), kTypeNames[itr2->value.GetType()]);
-//	}
+}else{
+	//return 0
 }
 }
 }
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////
-    // 2. Access values in document. 
-
-
     return 0;
 }
+//void findObjects(Document doc, string jstr , string jtype){
+//    	static const char* kTypeNames[] = { "Null", "False", "True", "Object", "Array", "String", "Number" };
+//	if(strcmp(jtype, "Object")!=0) return;// base case
+//	rapidjson::Document document1;
+//        rapidjson::StringBuffer sb;
+//        rapidjson::Writer<rapidjson::StringBuffer> writer( sb );
+//        doc[jstr].Accept( writer );
+//        std::cout << sb.GetString() << std::endl;
+//        if ( document1.Parse<0>(sb.GetString() ).HasParseError() ) {
+//               std::cout << "Error parsing" << std::endl;
+//               return;
+//        }
+// 	for (Value::ConstMemberIterator itr = document1.MemberBegin();itr != document1.MemberEnd(); ++itr)
+//        {
+//	findObjects(doc, itr->name.GetString(), kTypeNames[itr->value.GetType()] );
+//        // printf("Type of member %s is %s\n",itr->name.GetString(), kTypeNames[itr->value.GetType()]);
+//      	}
+//}
+
+

@@ -1,0 +1,14 @@
+{
+    "object1": {
+        "type": "ASCII",
+        "value": "one"
+    },
+    "object2": {
+        "type": "INT64",
+        "value": "2"
+    },
+    "object3": {
+        "type": "DOUBLE",
+        "value": "3.0"
+    }
+}
