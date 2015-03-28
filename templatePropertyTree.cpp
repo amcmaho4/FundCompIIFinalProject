@@ -10,6 +10,7 @@
 
 // Custom translator that works with boost::any instead of std::string
 template <class Ext, class Int = boost::any>
+
 struct variant_translator
 {
     typedef Ext external_type;

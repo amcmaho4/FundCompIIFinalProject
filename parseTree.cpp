@@ -80,6 +80,10 @@ int main(int, char*[]) {
 	printWindData(pt);
 	printTree(pt, 0);
 	parse_tree(pt, "");
+	boost::optional<float> v = pt.get_optional<float>("query.results.channel.wind.chill");
+	cout<< v <<endl;
+	ptree::const_iterator it = pt.find("chill");
+	double pi = boost::lexical_cast<double>(it->second._ptree_data__());
 	
 	//use get_optional if you are not sure that it exists
 	

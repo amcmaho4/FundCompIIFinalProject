@@ -28,17 +28,20 @@
 	$twitter = new TwitterAPIExchange($settings);
 	
 	
-	// this is the twitter request, it returns json
-	//	$twitter->setGetfield($getfield)
-	//	->buildOauth($url2, $requestMethod)
-	//	->performRequest();
+	 this is the twitter request, it returns json
+		$twitter->setGetfield($getfield)
+		->buildOauth($url2, $requestMethod)
+		->performRequest();
+	echo $twitter->setGetfield($getfield)
+	->buildOauth($url, $requestMethod)
+	->performRequest()> ;
 	
 	
 	// json_decode is a php function converts JSON string into an object or an associative array (dictionary)
 	// without this the output would be in json
-	$string = json_decode($twitter->setGetfield($getfield)
-						  ->buildOauth($url2, $requestMethod)
-						  ->performRequest(),$assoc = TRUE);
+	//$string = json_decode($twitter->setGetfield($getfield)
+						  //->buildOauth($url2, $requestMethod)
+						  //->performRequest(),$assoc = TRUE);
 	
 	if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
 	
