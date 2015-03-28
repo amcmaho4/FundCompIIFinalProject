@@ -37,7 +37,7 @@ int main()
     cerr << " " << "{" << endl;
 	  for (boost::property_tree::ptree::iterator pos = pt.begin(); pos != pt.end();) {
       cerr << "    " << "\"" << pos->first << "\": ";
-      printTree(pos->second, 2);
+   //   printTree(pos->second, 2);
       ++pos; 
       if (pos != pt.end()) {
         cerr << ","; 

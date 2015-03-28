@@ -41,3 +41,55 @@ main()
 
   return EXIT_SUCCESS;
 }
+
+
+
+
+//use get_optional if you are not sure that it exists
+
+//	int pi = pt.get<int>("chill");     // get double
+//	cout<< pi <<endl;
+
+//	ptree pt;
+//	/* ... */
+//	float v = pt.get<float>("a.path.to.float.value");
+
+//	ptree::const_iterator itt = pt.find("windchill");
+//	string windchill = (itt->second._ptree_data__());
+//		cout<< windchill <<endl;
+//
+//ptree::const_assoc_iterator it = pt.find("a");
+//if( it == pt.not_found() )
+//{
+//	cout<< "That value does not exist"<<endl;
+//	}else{
+//		
+//	}
+//	
+//	
+
+	
+	
+	
+	
+	//	boost::optional< ptree& > child = node.get_child_optional( "possibly_missing_node" );
+	//	if( !child )
+	//	{
+	//		cout<< "dnexists"<<endl;
+	//	}
+	//	tree_type::const_iterator end = tree.end();
+	//	for (your_tree_type::const_iterator it = tree.begin(); it != end; ++it)
+	
+	//	typedef std::map<int, int> map_type;
+	//	map_type map = /* ... */;
+	//
+	//	BOOST_FOREACH(const map_type::value_type& myPair, map)
+	//	{
+	//		// ...
+	//	}
+
+
+
+
+
+

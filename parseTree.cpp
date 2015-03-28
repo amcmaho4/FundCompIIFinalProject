@@ -7,8 +7,8 @@
 //
 
 
-//#define foreach         BOOST_FOREACH
-//#define reverse_foreach BOOST_REVERSE_FOREACH
+#define foreach         BOOST_FOREACH
+#define reverse_foreach BOOST_REVERSE_FOREACH
 #include <stdio.h>
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <boost/optional/optional.hpp>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 using boost::property_tree::ptree;
@@ -46,91 +47,67 @@ void printTree (ptree &pt, int level) {
 	return;
 }
 
-void parse_tree(const ptree& pt, std::string key)
+
+
+void parseForFullPath(const ptree& pt, string key)
 {
-	std::string nkey;
-	
-	if (!key.empty())
-	{
-		// The full-key/value pair for this node are key / pt.data()
+	string nkey;
+	if (!key.empty()){
 		nkey = key + ".";
 		cout<<nkey<<endl;
 	}
-	
 	ptree::const_iterator end = pt.end();
-	for (ptree::const_iterator it = pt.begin(); it != end; ++it)
-	{
-		parse_tree(it->second, nkey + it->first);
+	for (ptree::const_iterator it = pt.begin(); it != end; ++it){
+		parseForFullPath(it->second, nkey + it->first);
 	}
 }
 
-void printWindData(const ptree& node)
-{
-//	BOOST_FOREACH(const ptree::value_type& child, node.get_child("speed")) {
-//		std::cout<< "windy data"<<endl;
-//	}
+void findDataMemberWithFullPath(const ptree& pt, string key){
+	boost::optional<float> v = pt.get_optional<float>(key);
+	cout<< v <<endl;
+	
 }
+
+void storeInAVector(const ptree& pt, string key){
+	// template so that make more than string vecs
+	vector<string> v;
+	ptree this_ = pt.get_child(key);
+	for (const auto& tree : this_){
+		v.push_back(tree.second.get<string>(""));
+	}
+	for (auto i : v){
+		std::cout << i << std::endl;
+	}
+}
+
+
+
 
 int main(int, char*[]) {
 	string tagfile = "file2.json";
 	ptree pt;
-	bool success = true;
-	//try {
+	// "ptree" or property tree is a struct defined by boosts' lib
 	read_json(tagfile, pt);
-	printWindData(pt);
 	printTree(pt, 0);
-	parse_tree(pt, "");
-	boost::optional<float> v = pt.get_optional<float>("query.results.channel.wind.chill");
-	cout<< v <<endl;
-	ptree::const_iterator it = pt.find("chill");
-	double pi = boost::lexical_cast<double>(it->second._ptree_data__());
 	
-	//use get_optional if you are not sure that it exists
-	
-//	int pi = pt.get<int>("chill");     // get double
-//	cout<< pi <<endl;
-	
-//	ptree pt;
-//	/* ... */
-//	float v = pt.get<float>("a.path.to.float.value");
-	
-//	ptree::const_iterator itt = pt.find("windchill");
-//	string windchill = (itt->second._ptree_data__());
-//		cout<< windchill <<endl;
+	parseForFullPath(pt, ""); // this gives you all the full paths,  which can be used in the below function
+	findDataMemberWithFullPath(pt, "query.results.channel.wind.chill");
 
-	ptree::const_assoc_iterator it = pt.find("a");
-	if( it == pt.not_found() )
-	{
-				cout<< "That value does not exist"<<endl;
-	}else{
 	
-		
+
+	//Template this function to make it more useable
+	storeInAVector(pt, "query"); // stores the string results of this query in a vector
+	
+	// another way to loop through tree
+	BOOST_FOREACH(const ptree::value_type &v, pt.get_child("query")) {
+		cout<< v.first; // v.first is the name of the child
+		cout<< ": " << v.second.data()<< endl; // v.second is the child tree
 	}
 	
-	
+	//ptree::const_iterator it = pt.find("chill");
+	//double pi = boost::lexical_cast<double>(it->second._ptree_data__());
 
-	
-	
-	
-	
-//	boost::optional< ptree& > child = node.get_child_optional( "possibly_missing_node" );
-//	if( !child )
-//	{
-//		cout<< "dnexists"<<endl;
-//	}
-//	tree_type::const_iterator end = tree.end();
-//	for (your_tree_type::const_iterator it = tree.begin(); it != end; ++it)
-	
-//	typedef std::map<int, int> map_type;
-//	map_type map = /* ... */;
-//	
-//	BOOST_FOREACH(const map_type::value_type& myPair, map)
-//	{
-//		// ...
-//	}
-	
-	cerr << endl;
-	return success;
+	cerr << endl; // cerr is like cout but error checking(?), outputs immediately
 }
 
 
